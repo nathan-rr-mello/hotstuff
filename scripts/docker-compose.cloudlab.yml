@@ -4,4 +4,6 @@ services:
       context: ".."
       dockerfile: "scripts/Dockerfile.controller"
     network_mode: "host"         # Usa rede do host para permitir acesso direto aos nós remotos
-    entrypoint: sleep infinity   # Mantém o container vivo para testes ou execução manual
+    entrypoint: sleep infinity   # Mantém o container vivo para testes ou
+    volumes:
+      - ./output:/root/output  # Monta o diretório de saída para logs
