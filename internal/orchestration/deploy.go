@@ -9,11 +9,9 @@ package orchestration
 import (
 	"context"
 	"errors"
-	"fmt"
 	"io"
 	"math/rand"
 	"path"
-	"path/filepath"
 	"strings"
 	"sync"
 	"time"
@@ -41,10 +39,10 @@ func Deploy(g iago.Group, cfg DeployConfig) (workers map[string]WorkerSession, e
 		workers: make(map[string]WorkerSession),
 	}
 
-	exe, err := filepath.Abs(cfg.ExePath)
-	if err != nil {
-		return nil, fmt.Errorf("failed to make ExePath absolute: %w", err)
-	}
+	// exe, err := filepath.Abs(cfg.ExePath)
+	// if err != nil {
+	// 	return nil, fmt.Errorf("failed to make ExePath absolute: %w", err)
+	// }
 
 	// catch panics and return any errors
 	defer func() {
@@ -66,23 +64,33 @@ func Deploy(g iago.Group, cfg DeployConfig) (workers map[string]WorkerSession, e
 			return fs.MkdirAll(host.GetFS(), dataDir, 0o755)
 		})
 
-	g.Run("Upload hotstuff binary",
-		func(ctx context.Context, host iago.Host) (err error) {
-			dest, err := iago.NewPath("/", iago.GetStringVar(host, "test-dir")+"/hotstuff")
-			if err != nil {
-				return err
-			}
-			host.SetVar("exe", dest.String())
-			src, err := iago.NewPathFromAbs(exe)
-			if err != nil {
-				return err
-			}
-			return iago.Upload{
-				Src:  src,
-				Dest: dest,
-				Perm: iago.NewPerm(0o755),
-			}.Apply(ctx, host)
-		})
+	// g.Run("Upload hotstuff binary",
+	// 	func(ctx context.Context, host iago.Host) (err error) {
+	// 		dest, err := iago.NewPath("/", iago.GetStringVar(host, "test-dir")+"/hotstuff")
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		host.SetVar("exe", dest.String())
+	// 		src, err := iago.NewPathFromAbs(exe)
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		return iago.Upload{
+	// 			Src:  src,
+	// 			Dest: dest,
+	// 			Perm: iago.NewPerm(0o755),
+	// 		}.Apply(ctx, host)
+	// 	})
+
+	g.Run("Set executable path", func(_ context.Context, host iago.Host) error {
+		path, err := iago.NewPathFromAbs(cfg.ExePath)
+		if err != nil {
+			return err
+		}
+		host.SetVar("exe", path.String())
+
+		return nil
+	})
 
 	g.Run("Start hotstuff binary", w.Apply)
 

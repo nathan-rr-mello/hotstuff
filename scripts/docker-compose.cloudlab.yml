@@ -1,0 +1,7 @@
+services:
+  controller:
+    build:
+      context: ".."
+      dockerfile: "scripts/Dockerfile.controller"
+    network_mode: "host"         # Usa rede do host para permitir acesso direto aos nós remotos
+    entrypoint: sleep infinity   # Mantém o container vivo para testes ou execução manual

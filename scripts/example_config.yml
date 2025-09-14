@@ -1,0 +1,10 @@
+replica-hosts:
+  - node1
+
+client-hosts:
+  - node2
+
+output: ./output/
+measurement-interval: 1s
+replicas: 4
+clients: 2

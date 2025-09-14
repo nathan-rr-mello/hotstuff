@@ -22,3 +22,4 @@ ADD scripts/id .ssh/
 ADD scripts/id.pub .ssh/
 ADD scripts/ssh_config .ssh/config
 ADD scripts/example_config.cue ./example_config.cue
+ADD scripts/example_config.yml ./example_config.yml

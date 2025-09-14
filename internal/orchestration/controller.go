@@ -78,7 +78,7 @@ func (e *Experiment) Run() (err error) {
 	replicaMap := e.cfg.AssignReplicas(replicaOpts)
 	clientIds := e.cfg.AssignClients()
 
-	if e.output != "" {
+	if e.cfg.Output != "" {
 		err = e.writeAssignmentsFile(replicaMap, clientIds)
 		if err != nil {
 			return err
@@ -170,7 +170,7 @@ type assignmentsFileContents struct {
 }
 
 func (e *Experiment) writeAssignmentsFile(replicaMap config.ReplicaMap, clientIDs config.ClientMap) (err error) {
-	f, err := os.OpenFile(filepath.Join(e.output, "hosts.json"), os.O_CREATE|os.O_TRUNC|os.O_WRONLY, 0o644)
+	f, err := os.OpenFile(filepath.Join(e.cfg.Output, "hosts.json"), os.O_CREATE|os.O_TRUNC|os.O_WRONLY, 0o644)
 	if err != nil {
 		return err
 	}

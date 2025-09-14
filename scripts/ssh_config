@@ -1,5 +1,7 @@
 # ssh_config used with the controller container
 
-Host hotstuff-worker-*
-	User root
-	IdentityFile ~/.ssh/id
+Host node*
+    User nathanrm
+    Port 22
+    IdentityFile ~/.ssh/id
+    UserKnownHostsFile ~/.ssh/known_hosts
