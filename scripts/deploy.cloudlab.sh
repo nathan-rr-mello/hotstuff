@@ -6,7 +6,7 @@ join() {
 	echo "$*"
 }
 
-num_hosts=2
+num_hosts=9
 
 declare -A hosts
 
@@ -18,7 +18,7 @@ compose_args="--project-name=hotstuff"
 
 docker compose $compose_args -f docker-compose.cloudlab.yml up -d --build controller
 docker compose $compose_args exec -T controller /bin/sh -c "ssh-keyscan -H $(join ' ' "${hosts[@]}") >> ~/.ssh/known_hosts" &>/dev/null
-docker compose $compose_args exec -T controller /bin/sh -c "hotstuff run --config=./example_config.yml --ssh-config=.ssh/config --exe=/usr/local/hotstuff/hotstuff"
+docker compose $compose_args exec -T controller /bin/sh -c "hotstuff run --config=./example_config.yml --ssh-config=.ssh/config --exe=/usr/local/hotstuff/hotstuff --cue=./host_config.cue"
 exit_code="$?"
 
 
