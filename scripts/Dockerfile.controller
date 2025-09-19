@@ -23,3 +23,4 @@ ADD scripts/id.pub .ssh/
 ADD scripts/ssh_config .ssh/config
 ADD scripts/host_config.cue ./host_config.cue
 ADD scripts/example_config.yml ./example_config.yml
+ADD scripts/experiments/ ./experiments/
