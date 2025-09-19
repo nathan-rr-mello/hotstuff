@@ -17,7 +17,7 @@ config: {
 	]
 
     replicas: 8
-	clients:  2
+	clients:  3
 
     locations: [
         "Dagupan",

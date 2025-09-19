@@ -16,10 +16,10 @@ measurement-interval: 1s
 cpu-profile: true
 mem-profile: true
 replicas: 8
-clients: 2
+clients: 3
 leader-rotation: fixed
 max-timeout: 1s
 view-timeout: 1s
 duration: 30s
 timeout-multiplier: 1.5
-client-timeout: 4s
+client-timeout: 3s
