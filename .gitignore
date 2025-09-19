@@ -36,3 +36,5 @@ measurements.json
 twins.json
 internal/tree/benchmarkdata/*
 eventloop/benchmarkdata/*
+
+**/output

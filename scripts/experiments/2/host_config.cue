@@ -20,13 +20,13 @@ config: {
 	clients:  2
 
     locations: [
-        "Indore",
-        "Sydney",
-        "Sydney",
-        "Sydney",
-        "Sydney",
-        "Sydney",
-        "Sydney",
-        "Sydney",
+        "Boston",
+        "Maidstone",
+        "Maidstone",
+        "Maidstone",
+        "Maidstone",
+        "Maidstone",
+        "Maidstone",
+        "Maidstone",
     ]
 }

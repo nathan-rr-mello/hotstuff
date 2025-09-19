@@ -20,7 +20,7 @@ config: {
 	clients:  2
 
     locations: [
-        "Indore",
+        "Dagupan",
         "Sydney",
         "Sydney",
         "Sydney",
