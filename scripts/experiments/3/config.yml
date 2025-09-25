@@ -18,6 +18,7 @@ mem-profile: true
 replicas: 8
 clients: 2
 leader-rotation: fixed
+max-concurrent: 5
 max-timeout: 1s
 view-timeout: 1s
 duration: 30s
