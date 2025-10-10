@@ -1,0 +1,29 @@
+replica-hosts:
+  - node1
+  - node2
+  - node3
+  - node4
+  - node5
+  - node6
+  - node7
+  - node8
+  - node10
+  - node11
+  - node12
+
+client-hosts:
+  - node13
+
+output: ./output/
+measurement-interval: 1s
+cpu-profile: true
+mem-profile: true
+replicas: 12
+clients: 2
+leader-rotation: fixed
+max-concurrent: 6
+max-timeout: 1s
+view-timeout: 1s
+duration: 30s
+timeout-multiplier: 1.5
+client-timeout: 3s

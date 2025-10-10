@@ -15,7 +15,7 @@ join() {
 	echo "$*"
 }
 
-num_hosts=9
+num_hosts=13
 
 declare -A hosts
 
