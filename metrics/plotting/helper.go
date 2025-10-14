@@ -99,7 +99,9 @@ func GroupByTimeInterval(startTimes *StartTimes, m MeasurementMap, interval time
 			for indices[i] < len(measurements) {
 				m := measurements[indices[i]]
 				// check if this measurement falls within the current time interval
-				t, ok := startTimes.ClientOffset(m.GetEvent().GetID(), m.GetEvent().GetTimestamp().AsTime())
+				// t, ok := startTimes.ClientOffset(m.GetEvent().GetID(), m.GetEvent().GetTimestamp().AsTime())
+				t, ok := startTimes.ReplicaOffset(m.GetEvent().GetID(), m.GetEvent().GetTimestamp().AsTime())
+
 				if ok && t < currentTime+interval {
 					// add it to the group and move to the next measurement
 					group.Measurements = append(group.Measurements, m)
@@ -111,13 +113,17 @@ func GroupByTimeInterval(startTimes *StartTimes, m MeasurementMap, interval time
 			}
 			i++
 		}
+		//fmt.Println("measurement group", group)
 		if len(group.Measurements) > 0 {
 			groups = append(groups, group)
 		}
 		if remaining <= 0 {
 			break
+		} else {
+			//fmt.Println("remaining:", remaining)
 		}
 		currentTime += interval
+		//fmt.Println("NUNCAAA CHEGOUU AQUI")
 	}
 	return groups
 }
