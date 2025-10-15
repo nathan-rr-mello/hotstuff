@@ -29,8 +29,4 @@ config: {
         "Sydney",
         "Sydney",
     ]
-
-    byzantineStrategy: {
-		silent: [1, 2, 3]
-	}
 }
