@@ -10,6 +10,7 @@ config: {
         "node6",
         "node7",
         "node8",
+        "node9",
         "node10",
         "node11",
         "node12",

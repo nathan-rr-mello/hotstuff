@@ -7,6 +7,7 @@ replica-hosts:
   - node6
   - node7
   - node8
+  - node9
   - node10
   - node11
   - node12
@@ -27,3 +28,6 @@ view-timeout: 1s
 duration: 30s
 timeout-multiplier: 1.5
 client-timeout: 3s
+rate-limit: 50
+rate-step: 30
+rate-step-interval: 5s
