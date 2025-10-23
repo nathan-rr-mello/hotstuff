@@ -1,0 +1,51 @@
+{
+	"HostsToReplicas": {
+		"node1": [
+			1
+		],
+		"node10": [
+			10
+		],
+		"node11": [
+			11
+		],
+		"node12": [
+			12
+		],
+		"node2": [
+			2
+		],
+		"node3": [
+			3
+		],
+		"node4": [
+			4
+		],
+		"node5": [
+			5
+		],
+		"node6": [
+			6
+		],
+		"node7": [
+			7
+		],
+		"node8": [
+			8
+		],
+		"node9": [
+			9
+		]
+	},
+	"HostsToClients": {
+		"node13": [
+			1
+		],
+		"node14": [
+			2
+		],
+		"node15": [
+			3
+		]
+	}
+}
