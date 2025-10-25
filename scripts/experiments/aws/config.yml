@@ -27,7 +27,7 @@ max-timeout: 1s
 view-timeout: 1s
 duration: 30s
 timeout-multiplier: 1.5
-client-timeout: 3s
+client-timeout: 5s
 rate-limit: 50
 rate-step: 30
 rate-step-interval: 5s

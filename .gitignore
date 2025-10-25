@@ -41,3 +41,5 @@ internal/tree/benchmarkdata/*
 eventloop/benchmarkdata/*
 
 **/output
+
+node_modules/

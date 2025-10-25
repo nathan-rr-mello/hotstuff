@@ -30,5 +30,6 @@ docker compose $compose_args exec -T controller /bin/sh -c "ssh-keyscan -H $(joi
 docker compose $compose_args exec -T controller /bin/sh -c "hotstuff run --config=$CONFIG_FILE --ssh-config=.ssh/config --exe=/usr/local/hotstuff/hotstuff --cue=$CUE_FILE"
 exit_code="$?"
 
+docker compose $compose_args down
 
 exit $exit_code
