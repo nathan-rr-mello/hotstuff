@@ -20,6 +20,7 @@ func init() {
 type ConsensusLatency struct {
 	metricsLogger Logger
 	id            hotstuff.ID
+	opts      *modules.Options
 	wf            Welford
 }
 
@@ -28,17 +29,17 @@ func (lr *ConsensusLatency) InitModule(mods *modules.Core) {
 	var (
 		eventLoop *eventloop.EventLoop
 		logger    logging.Logger
-		opts      *modules.Options
+		//opts      *modules.Options
 	)
 
 	mods.Get(
 		&lr.metricsLogger,
-		opts,
+		&lr.opts,
 		&eventLoop,
 		&logger,
 	)
 
-	lr.id = opts.ID()
+	//lr.id = opts.ID()
 	eventLoop.RegisterHandler(hotstuff.ConsensusLatencyEvent{}, func(event any) {
 		latencyEvent := event.(hotstuff.ConsensusLatencyEvent)
 		lr.addLatency(latencyEvent.Latency)
@@ -60,7 +61,7 @@ func (lr *ConsensusLatency) addLatency(latency time.Duration) {
 func (lr *ConsensusLatency) tick(_ types.TickEvent) {
 	mean, variance, count := lr.wf.Get()
 	event := &types.LatencyMeasurement{
-		Event:    types.NewReplicaEvent(uint32(lr.id), time.Now()),
+		Event:    types.NewReplicaEvent(uint32(lr.opts.ID()), time.Now()),
 		Latency:  mean,
 		Variance: variance,
 		Count:    count,

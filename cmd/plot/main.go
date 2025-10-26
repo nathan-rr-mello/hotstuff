@@ -18,6 +18,7 @@ var (
 	latency             = flag.String("latency", "", "File to save latency plot to.")
 	throughput          = flag.String("throughput", "", "File to save throughput plot to.")
 	throughputVSLatency = flag.String("throughputvslatency", "", "File to save throughput vs latency plot to.")
+	consensusLatency  	= flag.String("consensus-latency", "", "File to save consensus latency plot to.")
 )
 
 func main() {
@@ -41,8 +42,9 @@ func main() {
 	latencyPlot := plotting.NewClientLatencyPlot()
 	throughputPlot := plotting.NewThroughputPlot()
 	throughputVSLatencyPlot := plotting.NewThroughputVSLatencyPlot()
+	consensusLatencyPlot := plotting.NewConsensusLatencyPlot()
 
-	reader := plotting.NewReader(file, &latencyPlot, &throughputPlot, &throughputVSLatencyPlot)
+	reader := plotting.NewReader(file, &latencyPlot, &throughputPlot, &throughputVSLatencyPlot, &consensusLatencyPlot)
 	if err := reader.ReadAll(); err != nil {
 		log.Fatalln(err)
 	}
@@ -61,6 +63,12 @@ func main() {
 
 	if *throughputVSLatency != "" {
 		if err := throughputVSLatencyPlot.PlotAverage(*throughputVSLatency, *interval); err != nil {
+			log.Fatalln(err)
+		}
+	}
+
+	if *consensusLatency != "" {
+		if err := consensusLatencyPlot.PlotAverage(*consensusLatency, *interval); err != nil {
 			log.Fatalln(err)
 		}
 	}
